@@ -1,28 +1,42 @@
-package com.example.sonali_ad;
+package com.example.menu_sr;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    TextView textView;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.eng:
+                textView.setText("English");
+                return true;
+            case R.id.hind:
+                textView.setText("Hindi");
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_sr)
-                .setTitle("BE ALERT!")
-                .setMessage("Follow Social Distancing")
-                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-                    }
-                }).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = findViewById(R.id.textView);
     }
 }
